@@ -1,0 +1,19 @@
+{
+  "name": "express-validator",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "a small app testing express-validator",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node --watch --env-file=.env app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-validator": "^7.2.0"
+  }
+}
