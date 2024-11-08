@@ -20,18 +20,18 @@ const validateUser = [
     body("email")
         .trim()
         .isEmail()
-        .withMessage('Email address must be valid')
+        .withMessage("Email address must be valid")
         .notEmpty()
-        .withMessage('Email is required'),
+        .withMessage("Email is required"),
     body("age")
         .trim()
-        .isInt({gt: 17, lt: 121, allow_leading_zeroes: false})
-        .withMessage('Age must be a number between 18 and 120')
+        .isInt({ gt: 17, lt: 121, allow_leading_zeroes: false })
+        .withMessage("Age must be a number between 18 and 120")
         .optional(),
     body("bio")
         .trim()
-        .isLength({max: 200})
-        .withMessage('Bio must be less than 200 characters')
+        .isLength({ max: 200 })
+        .withMessage("Bio must be less than 200 characters")
         .optional(),
 ];
 
@@ -85,8 +85,14 @@ const usersUpdatePost = [
             });
         }
         const { firstName, lastName, email, age, bio } = req.body;
-        console.log(req.body)
-        usersStorage.updateUser(req.params.id, { firstName, lastName, email, age, bio });
+        console.log(req.body);
+        usersStorage.updateUser(req.params.id, {
+            firstName,
+            lastName,
+            email,
+            age,
+            bio,
+        });
         res.redirect("/");
     },
 ];
@@ -96,8 +102,17 @@ const usersDeletePost = (req, res) => {
     res.redirect("/");
 };
 
+const searchUsersGet = (req, res) => {
+    const users = usersStorage.getUsers();
+    const user = users.filter(u => u.email === req.query.email)
+    res.render("searchUser", {
+        user: user[0],
+    });
+};
+
 export {
     usersListGet,
+    searchUsersGet,
     usersCreateGet,
     usersCreatePost,
     usersUpdatePost,

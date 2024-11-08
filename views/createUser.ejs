@@ -8,6 +8,11 @@
   </head>
   <body>
     <h1><%= title %></h1>
+    <form action="search" method="GET">
+      <label for="email">Email: </label>
+      <input type="email" name="email" id="email" required />
+      <button type="submit">Search</button>
+    </form>
     <%- include("partials/errors.ejs") %>
     <form action="create" , method="POST">
       <label for="firstName">First Name: </label>
